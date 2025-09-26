@@ -1,0 +1,689 @@
+body {
+    background-color: #0A0A0A;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.bg-card-custom {
+  background-color: #1E1F26;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    background: #000; /* Fallback background */
+}
+
+/* Ensure hero section has relative positioning for absolute children */
+#home {
+    position: relative;
+}
+
+/* Video error message styling */
+.video-error {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-error:hover {
+    background: rgba(0,0,0,0.9) !important;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.neon-text {
+    color: #CCFF00;
+    text-shadow: 0 0 10px rgba(204, 255, 0, 0.5);
+}
+
+/* Hero section text shadows */
+#home h1 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#home p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#home a {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Remove text shadow from buttons */
+#home a.bg-neon-green {
+    text-shadow: none;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.starburst {
+    position: relative;
+}
+
+.starburst::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, transparent 30%, rgba(204, 255, 0, 0.1) 70%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(204, 255, 0, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(204, 255, 0, 0.6); }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Carousel navigation button improvements */
+.carousel-nav-btn {
+    transition: all 0.3s ease;
+}
+
+.carousel-nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Video styling improvements */
+video {
+    background-color: #000;
+    cursor: pointer;
+}
+
+video::-webkit-media-controls-panel {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Video loading states */
+.video-loading {
+    position: relative;
+}
+
+.video-loading::before {
+    content: 'Loading video...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #CCFF00;
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #CCFF00;
+}
+
+.video-failed {
+    position: relative;
+}
+
+.video-failed::before {
+    content: 'Video failed to load';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ff4444;
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #ff4444;
+}
+
+.video-playing {
+    border: 2px solid #CCFF00;
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
+}
+
+/* Responsive video container */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background: #000;
+    display: block;
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Marquee Animation */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 1rem;
+    padding: 2rem 0;
+    border: 1px solid rgba(42, 42, 42, 0.5);
+}
+
+.marquee-container.no-bg {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    width: fit-content;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.marquee-content > div {
+    flex-shrink: 0;
+    padding: 0 4rem;
+    transition: transform 0.3s ease;
+}
+
+.marquee-content > div:hover {
+    transform: scale(1.1);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Portfolio Carousel Styles */
+.portfolio-carousel {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+}
+
+.portfolio-slide .grid {
+    gap: 1rem;
+}
+
+.portfolio-slide .grid.lg\:grid-cols-2 {
+    gap: 1rem;
+}
+
+.portfolio-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.portfolio-slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    min-height: 600px;
+}
+
+.portfolio-slide > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 600px;
+}
+
+.portfolio-slide .lg\:w-1\ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.portfolio-slide .video-container {
+    width: 100%;
+    height: 384px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.portfolio-slide video {
+    width: 100%;
+    height: 100%;
+    max-height: 384px;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+@media (max-width: 1024px) {
+    .portfolio-carousel {
+        padding: 0 1rem;
+    }
+    
+    .portfolio-slide {
+        min-height: auto;
+    }
+    
+    .portfolio-slide > div {
+        min-height: auto;
+        flex-direction: column;
+    }
+    
+    .portfolio-card {
+        padding: 1.5rem;
+    }
+    
+    .portfolio-slide video {
+        height: 16rem;
+    }
+    
+    .portfolio-slide .video-container {
+        height: 320px;
+        margin-top: 2rem;
+        padding: 0;
+    }
+    
+    .portfolio-slide video {
+        width: 100%;
+        height: 100%;
+        max-height: 320px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-card {
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+    }
+    
+    .portfolio-slide h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .portfolio-slide p {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .portfolio-slide .flex {
+        gap: 0.4rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .portfolio-slide span {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .portfolio-slide .video-container {
+        height: 200px;
+    }
+    
+
+    
+    .portfolio-slide video {
+        width: 100%;
+        height: 100%;
+        max-height: 200px;
+        object-fit: cover;
+    }
+    
+    .portfolio-slide h3 {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-slide p {
+        font-size: 0.9rem;
+    }
+    
+    .portfolio-slide .flex.flex-wrap {
+        gap: 0.5rem;
+    }
+    
+    .portfolio-slide .flex.flex-wrap span {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Enhanced video container styling for better consistency */
+.portfolio-slide .bg-black {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(57, 255, 20, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.1);
+}
+
+.portfolio-slide video {
+    height: 20rem;
+}
+
+.portfolio-slide .bg-black:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(57, 255, 20, 0.8);
+}
+
+/* Active state when video is playing */
+.portfolio-slide .bg-black.video-playing {
+    border: 2px solid #39ff14;
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.6);
+    transform: scale(1.01);
+}
+
+.portfolio-card {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(128, 128, 128, 0.1);
+}
+
+
+
+.portfolio-card {
+    border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.portfolio-card:hover {
+    border: 1px solid rgba(107, 114, 128, 0.5);
+}
+
+.portfolio-slide .bg-dark-card {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-slide .lg\:w-1\:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 2rem;
+}
+
+/* Ensure consistent spacing and alignment */
+.portfolio-slide h3,
+.portfolio-slide h4,
+.portfolio-slide p {
+    margin-bottom: 1rem;
+}
+
+.portfolio-slide .flex.flex-wrap {
+    margin-bottom: 1.5rem;
+}
+
+/* Portfolio navigation button styles */
+.portfolio-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(42, 42, 42, 0.5);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.portfolio-nav-btn:hover {
+    background: rgba(57, 255, 20, 0.2);
+    border-color: #39ff14;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.portfolio-prev {
+    left: 20px;
+}
+
+.portfolio-next {
+    right: 20px;
+}
+
+.portfolio-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.portfolio-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.portfolio-dot.active {
+    background: #39ff14;
+    transform: scale(1.2);
+}
+
+.portfolio-dot:hover {
+    background: rgba(57, 255, 20, 0.6);
+}
+
+/* Accordion Styles */
+.accordion-item {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.8));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+    border-radius: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.accordion-item:hover {
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    transform: translateY(-2px);
+}
+
+.accordion-header {
+    cursor: pointer;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(57, 255, 20, 0.05);
+}
+
+.accordion-header.active {
+    background: rgba(57, 255, 20, 0.1);
+    border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+}
+
+.accordion-title {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.accordion-icon {
+    width: 3rem;
+    height: 3rem;
+    background: #39ff14;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.accordion-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #0A0A0A;
+}
+
+.accordion-arrow {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #39ff14;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.accordion-arrow.rotated {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-content.active {
+    max-height: 500px;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.accordion-description {
+    color: #9CA3AF;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.accordion-features {
+    margin-bottom: 1.5rem;
+}
+
+.accordion-features .feature-item {
+    display: flex;
+    align-items: center;
+    color: #D1D5DB;
+    margin-bottom: 0.75rem;
+}
+
+.accordion-features .feature-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #39ff14;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.accordion-pricing {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.accordion-pricing .price {
+    color: #39ff14;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.accordion-button {
+    background: #39ff14;
+    color: #0A0A0A;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.accordion-button:hover {
+    background: rgba(57, 255, 20, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Responsive accordion */
+@media (max-width: 768px) {
+    .accordion-header {
+        padding: 1rem;
+    }
+    
+    .accordion-content.active {
+        padding: 0 1rem 1rem;
+    }
+    
+    .accordion-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 0.75rem;
+    }
+    
+    .accordion-icon svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
