@@ -51,12 +51,42 @@
         </div>
         
         <!-- Mobile menu button -->
-        <div class="md:hidden fixed top-6 right-6">
-            <button id="mobile-menu-btn" class="bg-dark-card/80 backdrop-blur-md border border-dark-border rounded-full p-3 text-white neon-glow">
+        <div class="md:hidden fixed top-4 right-4 z-50">
+            <button id="mobile-menu-btn" class="bg-dark-card/80 backdrop-blur-md border border-dark-border rounded-full p-3 text-white neon-glow transition-all duration-300 hover:bg-dark-card">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 md:hidden">
+            <!-- Mobile Menu Panel -->
+            <div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-dark-bg border-l border-dark-border transform translate-x-full transition-transform duration-300">
+                <!-- Close Button -->
+                <div class="flex justify-end p-4">
+                    <button id="mobile-menu-close" class="bg-dark-card/80 backdrop-blur-md border border-dark-border rounded-full p-2 text-white neon-glow transition-all duration-300 hover:bg-dark-card">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="px-6 py-4">
+                    <div class="space-y-4">
+                        <a href="#about" class="mobile-menu-link block text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-neon-green/10 hover:text-neon-green transition-all duration-300">About</a>
+                        <a href="#portfolio" class="mobile-menu-link block text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-neon-green/10 hover:text-neon-green transition-all duration-300">Portfolio</a>
+                        <a href="#services" class="mobile-menu-link block text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-neon-green/10 hover:text-neon-green transition-all duration-300">Services</a>
+                        <a href="#process" class="mobile-menu-link block text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-neon-green/10 hover:text-neon-green transition-all duration-300">Process</a>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="mt-8">
+                        <a href="#contact" class="mobile-menu-link block bg-neon-green text-dark-bg font-semibold text-center py-3 px-6 rounded-full transition-all hover:bg-neon-green/90 pulse-glow">Let's Talk</a>
+                    </div>
+                </nav>
+            </div>
         </div>
     </nav>
 
@@ -1074,6 +1104,63 @@
             });
         });
         
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+            // Function to open mobile menu
+            function openMobileMenu() {
+                mobileMenuOverlay.classList.remove('opacity-0', 'invisible');
+                mobileMenuOverlay.classList.add('opacity-100', 'visible');
+                mobileMenuPanel.classList.remove('translate-x-full');
+                mobileMenuPanel.classList.add('translate-x-0');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+
+            // Function to close mobile menu
+            function closeMobileMenu() {
+                mobileMenuOverlay.classList.remove('opacity-100', 'visible');
+                mobileMenuOverlay.classList.add('opacity-0', 'invisible');
+                mobileMenuPanel.classList.remove('translate-x-0');
+                mobileMenuPanel.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            // Event listeners
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileMenu);
+            }
+
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close menu when clicking on overlay
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileMenuOverlay) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+
+            // Close menu when clicking on navigation links
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
+        });
+
         // Portfolio carousel functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Carousel navigation functionality
